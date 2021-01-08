@@ -51,6 +51,7 @@
     </div>
     <script>
       var businessHourRange=[9,17];
+      var HourEventDataLists=[];
 
       for (var i=businessHourRange[0];i<=businessHourRange[1];i++)
       {
@@ -62,7 +63,7 @@
         tempHrDescriptrDiv.append(tempHrDescriptrValP);
         
         var tempEventHolderDiv = $("<div>").attr('class','col event-holder');
-        var tempEventInputField = $("<input>").attr('type','text');
+        var tempEventInputField = $("<input>").attr('type','text').attr('id',`input${i}`).attr('name',`input${i}`);
         tempEventHolderDiv.append(tempEventInputField);
 
         var tempSaveEventDiv = $("<div>").attr('class','col save-event');
@@ -73,10 +74,31 @@
         tempHEDHolder.append(tempEventHolderDiv);
         tempHEDHolder.append(tempSaveEventDiv);
         $(".container").append(tempHEDHolder);
-        
+        HourEventDataLists.push(HourEventData);
+    
       
       }
 
+      $(document).on('keydown',function (event)
+      {
+        // console.log(event.target.id);
+        // console.log(event.target.id.indexOf('input'));
+        if (event.target.id.indexOf('input')!==-1)
+        {
+          // console.log('h2');
+          // console.log(parseInt(event.target.id.replace('input','')));
+          var getHourEventData = HourEventDataLists[parseInt(event.target.id.replace('input',''))-businessHourRange[0]];
+          getHourEventData.Event=event.target.value;
+          HourEventDataLists[parseInt(event.target.id.replace('input',''))-businessHourRange[0]]=getHourEventData;
+        }
+      });
+      // $(document).on('click', function (event)
+      // {
+      //   if (target.)
+      //   {
+
+      //   }
+      // })
 
     </script>
 
