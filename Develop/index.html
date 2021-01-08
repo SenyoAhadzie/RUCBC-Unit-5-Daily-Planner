@@ -20,6 +20,7 @@
     />
     <link rel="stylesheet" href="style.css" />
     <title>Work Day Scheduler</title>
+    
   </head>
 
   <body>
@@ -30,21 +31,49 @@
     </header>
     <div class="container">
       <!-- Timeblocks go here -->
-      <div class="row">
-        <div class="col hour-description">
-          <p> AM</p>
-        </div>
+      <!-- JSONObjectToStore Attributes
+            Day
+            Hour
+            event -->
+            <!-- JSON.stringify -->
+            <div class="col event-holder">
+              <input type="text" class="event-input">
+            </div>
 
-        <div class="col event-holder">
-          <input type="text" class="event-input">
-        </div>
-
-        <div class="col save-event">
-          <img src="" alt="">
-          <button></button>
-        </div>
-       </div>
+          <div class="col save-event">
+               <!-- <img src="" alt=""> -->
+              <button></button>
+              
+            </div>
+            
+  
+            
     </div>
+    <script>
+      var businessHourRange=[9,17];
+
+      for (var i=businessHourRange[0];i<=businessHourRange[1];i++)
+      {
+        var HourEventData={'YY':0000,'DD':00,'MM':00,'Hour':i, Event:""};
+        var tempHEDHolder=$("<div>").attr('class','row').attr('data-hr',i);
+        
+        var tempHrDescriptrDiv = $("<div>").attr('class','col hour-description');
+        var tempHrDescriptrValP = $("<p>").text(i>12 ? `${i} AM` : `${i-12} PM`);
+        tempHrDescriptrDiv.append(tempHrDescriptrValP);
+        
+        var tempEventHolderDiv = $("<div>").attr('class','col event-holder');
+        var tempEventInputField = $("<input>").attr('type','text');
+        tempEventHolderDiv.append(tempEventInputField);
+
+        var tempSaveEventDiv = $("<div>").attr('class','col save-event');
+        var tempSaveEventButton = $("<button>")
+          tempSaveEventDiv.append(tempSaveEventButton);
+        
+      
+      }
+
+      
+    </script>
 
     <!-- GIVEN I am using a daily planner to create a schedule -->
     <!-- WHEN I open the planner -->
